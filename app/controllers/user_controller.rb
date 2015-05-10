@@ -24,7 +24,7 @@ class UserController < ApplicationController
   end
 
   def new
-
+    @user = current_user
   end
 
 end
