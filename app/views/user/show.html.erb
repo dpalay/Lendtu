@@ -1,0 +1,5 @@
+<ul>
+  <% @user.identities.each do |i| %>
+      <li><%= i.id %> - <%= i.provider %> - <%= i.uid %> </li>
+  <% end %>
+</ul>

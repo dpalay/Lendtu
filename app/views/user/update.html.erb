@@ -1,0 +1,6 @@
+<p>The user <%= @user.name %> has been created. It is associated with the following identities.</p>
+<ul>
+  <% @user.identities.each do |i| %>
+  <li><%= i.id %> - <%= i.provider %> - <%= i.uid %> </li>
+  <% end %>
+</ul>

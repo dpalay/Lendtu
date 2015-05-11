@@ -42,7 +42,8 @@ class SessionController < ApplicationController
         @identity.save!
         self.current_user = @user
         #render text: auth.pretty_inspect
-        redirect_to root_url
+        redirect_to new_user_path
+
 
       end
     end
