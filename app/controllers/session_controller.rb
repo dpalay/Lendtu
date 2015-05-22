@@ -3,13 +3,22 @@ class SessionController < ApplicationController
 
   def create
     auth = request.env['omniauth.auth']
-    # Find an identity here
-    @identity = Identity.find_with_omniauth(auth)
+
+    unless auth.nil?
+      # Find an identity here
+      @identity = Identity.find_with_omniauth(auth)
+    end
 
 
     if @identity.nil?
-      # If no identity was found, create a brand new one here
-      @identity = Identity.create_with_omniauth(auth)
+      # Check if the provider is LendTu
+      if params[:provider] == 'LendTu'
+        @identity = Identity.create_with_Lendtu(auth)
+      else
+        # If no identity was found, create a brand new one here
+        @identity = Identity.create_with_omniauth(auth)
+      end
+
 
     end
 
@@ -37,12 +46,21 @@ class SessionController < ApplicationController
         # No user associated with the identity so we need to create a new one
         #redirect_to new_user_url, notice: "Please finish registering"
         #TODO:  add new user registration page
-        @user = User.create_with_omniauth(auth)
-        @identity.user = @user
-        @identity.save!
-        self.current_user = @user
-        #render text: auth.pretty_inspect
-        redirect_to new_user_path(@user)
+        if params[:provider] = 'LendTu'
+          if auth.nil?
+            @user = User.create
+          else
+            @user = User.create_with_omniauth(auth)
+          end
+          @identity.user = @user
+          @identity.save!
+          self.current_user = @user
+          #render text: auth.pretty_inspect
+          redirect_to edit_user_path(@user)
+        else
+          redirect_to pages_index_path
+        end
+
 
 
       end

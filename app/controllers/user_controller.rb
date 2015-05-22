@@ -5,13 +5,12 @@ class UserController < ApplicationController
   end
 
   def edit
-
+    @user = User.find(params[:id])
   end
 
   def create
     @user = User.new(user_params)
     @user.save
-    @user.identities.create(uid: @user.id, provider: 'LendTu')
     redirect_to @user
   end
 
@@ -21,6 +20,12 @@ class UserController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
   end
 
   def destroy

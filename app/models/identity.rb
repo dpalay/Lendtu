@@ -11,6 +11,13 @@ class Identity < ActiveRecord::Base
              image: auth['image'])
   end
 
+
+  #TODO:  GenUID, Token, Expire Time
+  def self.create_with_Lendtu(auth)
+    create(uid: 'GenUID', provider: 'LendTu', oauth_token: 'Token',
+           oauth_expires_at: 'Expire Time')
+  end
+
   def self.create_with_new_user(user)
     create(uid: user[:id], provider: 'LendTu', user_id: user[:id])
   end
