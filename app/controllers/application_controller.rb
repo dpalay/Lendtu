@@ -22,7 +22,9 @@ class ApplicationController < ActionController::Base
     end
 
     def signed_in?
-      !!current_user && (session[:expires_at] < Time.current)
+      #!!current_user && (session[:expires_at] < Time.current)
+      #TODO: Timeouts for session
+      !!current_user
     end
 
     helper_method :current_user, :signed_in?

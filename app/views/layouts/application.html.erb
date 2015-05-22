@@ -9,8 +9,10 @@
 
 <div id="user_nav">
   <% if current_user %>
-    Signed in as <strong><%= current_user.name %></strong>!
-    <%= link_to "Sign out", logout_path, id: "sign_out" %>
+      Signed in as <strong><%= current_user.name %></strong>!
+      <%= link_to "Sign out", logout_path, id: "sign_out" %>
+      <%= link_to "Add Facebook", "/auth/facebook", id: "fb_add" %>
+      <%= link_to "Add Google", "/auth/google_oauth2", id: "google_add" %>
   <% else %>
       <%= link_to "Sign up", "auth/LendTu/callback", id: "sign_up" %>
       <%= link_to "Sign in with Facebook", "/auth/facebook", id: "fb_sign_in" %>
