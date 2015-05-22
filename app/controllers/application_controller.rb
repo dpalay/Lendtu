@@ -3,7 +3,17 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
 
     protect_from_forgery
-  
+
+
+    def clearAll
+      User.all.each do |u|
+        u.destroy
+      end
+      Identity.all.each do |i|
+        i.destroy
+      end
+    end
+    
   private
 
 

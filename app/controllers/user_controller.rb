@@ -1,7 +1,7 @@
 class UserController < ApplicationController
 
   def index
-
+    @users = User.all
   end
 
   def edit
@@ -11,6 +11,7 @@ class UserController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.save
+    @user.identities.create(uid: @user.id, provider: 'LendTu')
     redirect_to @user
   end
 
@@ -27,12 +28,13 @@ class UserController < ApplicationController
   end
 
   def new
-    #TODO: should create an identity for here as well
+
   end
 
   private
   def user_params
     params.require(:user).permit(:name, :email, :first_name, :last_name)
   end
+
 
 end
