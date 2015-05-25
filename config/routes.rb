@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get 'pages/index'
+  match 'signin', to: 'pages#signin', via: [:get, :post]
+  match 'signup', to: 'pages#signup', via: [:get]
 
   match '/auth/:provider/callback', to: 'session#create', via: [:get, :post]
   match '/logout', to: 'session#destroy', via: [:get, :post]

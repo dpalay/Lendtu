@@ -1,0 +1,12 @@
+<%= form_for(Identity.new, url: {controller: :session, action: :create, params: {'provider' =>  'LendTu'} })  do |f| %>
+    <% unless signed_in? %>
+        <%= f.label :user_name %>: <%= text_field :user, :name %> <br/>
+        <%= f.label :email %>: <%= text_field :user, :email %><br/>
+        <%= f.label :first_name %>: <%= text_field :user,  :first_name %><br/>
+        <%= f.label :last_name %>: <%= text_field :user, :last_name %> <br/>
+    <% end %>
+    <%= f.label :password %>: <%= f.password_field :password %><br/>
+    <%= f.label :confirm_password %>: <%= password_field :identity, :confirm_password %><br/>
+    <%= f.submit "Create Login" %>
+    <%# TODO: Login button disabled until confirm pass = pass and pass matches criteria %>
+<% end %>

@@ -10,11 +10,16 @@
 <div id="user_nav">
   <% if current_user %>
       Signed in as <strong><%= current_user.name %></strong>!
-      <%= link_to "Sign out", logout_path, id: "sign_out" %>
-      <%= link_to "Add Facebook", "/auth/facebook", id: "fb_add" %>
-      <%= link_to "Add Google", "/auth/google_oauth2", id: "google_add" %>
+
+        <%= link_to "Sign out", logout_path, id: "sign_out" %>
+      <ul>
+        <li><%= link_to "Add Facebook", "/auth/facebook", id: "fb_add" %></li>
+        <li><%= link_to "Add Google", "/auth/google_oauth2", id: "google_add" %></li>
+        <li><%= link_to "Create LendTu Login", "signup", id: "signup" %></li>
+      </ul>
   <% else %>
-      <%= link_to "Sign up", "auth/LendTu/callback", id: "sign_up" %>
+      <%= link_to "Sign up", "signup", id: "sign_up" %>
+      <%= link_to "Sign in", "signin", id: "sign_in" %>
       <%= link_to "Sign in with Facebook", "/auth/facebook", id: "fb_sign_in" %>
       <%= link_to "Sign in with Developer", "/auth/developer", id: "dev_sign_in" %>
       <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "google_sign_in" %>
@@ -22,6 +27,6 @@
 </div>
 
 <%= yield %>
-
+<%= params.inspect %>
 </body>
 </html>

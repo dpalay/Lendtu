@@ -8,9 +8,11 @@ class CreateIdentities < ActiveRecord::Migration
         t.string :oauth_token
         t.datetime :oauth_expires_at
         t.string :image
-        t.string :password_hash
+        t.string :password_digest
+
       end
 
       add_index :identities, :user_id
+      add_index :identities, :provider
     end
 end

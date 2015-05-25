@@ -13,7 +13,9 @@ class SessionController < ApplicationController
     if @identity.nil?
       # Check if the provider is LendTu
       if params[:provider] == 'LendTu'
-        @identity = Identity.create_with_Lendtu(auth)
+        @identity = Identity.new(password: params[:identity][:password], uid: 'GenUID', provider: 'LendTu', oauth_token: 'Token',
+                                 oauth_expires_at: 'Expire Time')
+        @identity.save!
       else
         # If no identity was found, create a brand new one here
         @identity = Identity.create_with_omniauth(auth)
@@ -48,11 +50,14 @@ class SessionController < ApplicationController
         #TODO:  add new user registration page
         if params[:provider] = 'LendTu'
           if auth.nil?
-            @user = User.create
+            @user = User.new(name: params[:user][:name], first_name: params[:user]['first_name'],
+                             last_name: params[:user]['last_name'], email:  params[:user]['email'])
+            @user.save!
           else
             @user = User.create_with_omniauth(auth)
           end
           @identity.user = @user
+          @identity.password=rand.to_s #don't care what this password is, they will never use it.
           @identity.save!
           self.current_user = @user
           #render text: auth.pretty_inspect
