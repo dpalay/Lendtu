@@ -29,7 +29,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
-
+#Authentication With Devise
+gem 'devise'
 # Use ActiveModel has_secure_password
  gem 'bcrypt', '~> 3.1.7'
 
@@ -45,7 +46,16 @@ group :development, :test do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
 end
+
+
+
+gem 'recaptcha', :require => 'recaptcha/rails'
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
