@@ -1,4 +1,5 @@
 class Identity < ActiveRecord::Base
+  has_secure_password
   belongs_to :user
 
   def self.find_with_omniauth(auth)
@@ -14,8 +15,7 @@ class Identity < ActiveRecord::Base
 
   #TODO:  GenUID, Token, Expire Time
   def self.create_with_Lendtu(auth)
-    create(uid: 'GenUID', provider: 'LendTu', oauth_token: 'Token',
-           oauth_expires_at: 'Expire Time')
+    create()
   end
 
   def self.create_with_new_user(user)
