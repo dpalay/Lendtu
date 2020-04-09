@@ -1,10 +1,7 @@
 import {NextPage} from 'next';
 import Link from 'next/link'
 import MainLayout from '../components/MainLayout';
-import { useState } from 'react';
-
-
-export const config = { amp: true };
+import { useState, useEffect } from 'react';
 
 
 const Index: NextPage = () => {
