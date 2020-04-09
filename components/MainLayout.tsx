@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import { PropsWithChildren } from "react";
 
 const MainLayout: React.FC<PropsWithChildren<any>> = (props) => (
+    
   <div className="mainApp">
     <main>{props.children}</main>
     <style jsx>{`
