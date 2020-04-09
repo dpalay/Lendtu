@@ -1,11 +1,12 @@
 import {NextPage} from 'next';
+import MainLayout from '../components/MainLayout';
 
 export const config = { amp: true };
 
 const Index: NextPage = () => (
-    <div>
-        <p>Testing</p>
-    </div>
+    <MainLayout>
+        <div>Hi there</div>
+    </MainLayout>
 )
 
 export default Index;
